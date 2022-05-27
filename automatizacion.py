@@ -83,7 +83,7 @@ def proceso2():
 
     tabla_final["FechaCierre"]=tabla_final["FechaCierre"].apply(transformar_fecha)
 
-    tabla_final.to_excel("licitaciones_cerradass_2019.xlsx", index=False)
+    tabla_final.to_excel("licitaciones_cerradas_2019.xlsx", index=False)
 
 
     return
