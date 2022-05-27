@@ -8,7 +8,8 @@ import time
 def proceso():
     now = datetime.datetime.now()
     #now
-    start = datetime.datetime(2019,1,1)
+    #start = datetime.datetime(2019,1,1)
+    start = datetime.datetime(2022,5,26)
     salida = []
     avance = start
     while avance < now:
@@ -39,7 +40,5 @@ def proceso():
 
 if __name__ == '__main__':
     print("Comenzo...")
-    #proceso()
-    f = open ('holamundo.txt','w')
-    f.write('hola mundo')
-    f.close()
+    proceso()
+   
