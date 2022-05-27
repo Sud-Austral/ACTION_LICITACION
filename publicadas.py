@@ -38,8 +38,15 @@ def proceso():
     final.to_excel("licitaciones_publicadas_2019.xlsx", index=False)
     return None
 
+def transformar_fecha(texto):
+    try:
+        fecha = datetime.datetime.strptime(texto,"%Y-%m-%dT%H:%M:%S")
+    except:
+        fecha = None
+    return fecha
 
 def proceso2():
+    
     ref = pd.read_excel("https://github.com/Sud-Austral/ACTION_LICITACION/raw/main/licitaciones_publicadas_2019.xlsx")
     
     now = datetime.datetime.now()
@@ -73,7 +80,12 @@ def proceso2():
     tabla_final = pd.concat([ref,final])
     
     tabla_final = tabla_final.drop_duplicates()
+
+    tabla_final["FechaCierre"]=tabla_final["FechaCierre"].apply(transformar_fecha)
+
     tabla_final.to_excel("licitaciones_publicadas_2019.xlsx", index=False)
+
+
     return
 
 if __name__ == '__main__':
