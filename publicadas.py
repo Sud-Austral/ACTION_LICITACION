@@ -89,5 +89,5 @@ def proceso2():
     return
 
 if __name__ == '__main__':
-    print("Comenzo...")
+    print("Publicadas...")
     proceso2()
