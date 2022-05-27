@@ -39,4 +39,7 @@ def proceso():
 
 if __name__ == '__main__':
     print("Comenzo...")
-    proceso()
+    #proceso()
+    f = open ('holamundo.txt','w')
+    f.write('hola mundo')
+    f.close()
