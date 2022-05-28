@@ -89,8 +89,8 @@ def proceso2():
 
     #tabla_final["FechaCierre"]=tabla_final["FechaCierre"].apply(transformar_fecha)
     tabla_final = tabla_final.dropna(subset=['FechaCierre'])
-    df["FechaCierre"] = df["FechaCierre"].apply(lambda x : x.replace("T"," "))
-    df["FechaCierre"] = df["FechaCierre"].apply(GetFecha)
+    tabla_final["FechaCierre"] = tabla_final["FechaCierre"].apply(lambda x : x.replace("T"," "))
+    tabla_final["FechaCierre"] = tabla_final["FechaCierre"].apply(GetFecha)
     tabla_final.to_excel("licitaciones_publicadas_2019.xlsx", index=False)
 
 
