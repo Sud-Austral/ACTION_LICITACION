@@ -49,7 +49,10 @@ def GetFecha(texto):
     try:
         return datetime.datetime.strptime(texto,"%Y-%m-%d %H:%M:%S")
     except:
-        return datetime.datetime.strptime(texto.split(" "),"%Y-%m-%d")
+        try:
+            return datetime.datetime.strptime(texto.split(" "),"%Y-%m-%d")
+        except:
+            return texto
 
 def ChangeT(texto):
     try:
