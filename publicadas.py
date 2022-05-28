@@ -45,6 +45,12 @@ def transformar_fecha(texto):
         fecha = None
     return fecha
 
+def GetFecha(texto):
+    try:
+        return datetime.datetime.strptime(texto,"%Y-%m-%d %H:%M:%S")
+    except:
+        return datetime.datetime.strptime(texto.split(" "),"%Y-%m-%d")
+
 def proceso2():
     
     ref = pd.read_excel("https://github.com/Sud-Austral/ACTION_LICITACION/raw/main/licitaciones_publicadas_2019.xlsx")
@@ -81,8 +87,10 @@ def proceso2():
     
     tabla_final = tabla_final.drop_duplicates()
 
-    tabla_final["FechaCierre"]=tabla_final["FechaCierre"].apply(transformar_fecha)
-
+    #tabla_final["FechaCierre"]=tabla_final["FechaCierre"].apply(transformar_fecha)
+    tabla_final = tabla_final.dropna(subset=['FechaCierre'])
+    df["FechaCierre"] = df["FechaCierre"].apply(lambda x : x.replace("T"," "))
+    df["FechaCierre"] = df["FechaCierre"].apply(GetFecha)
     tabla_final.to_excel("licitaciones_publicadas_2019.xlsx", index=False)
 
 
