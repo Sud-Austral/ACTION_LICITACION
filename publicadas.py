@@ -63,7 +63,7 @@ def ChangeT(texto):
 
 
 def proceso2():
-    
+    print("Comenzamos publicadas...")
     ref = pd.read_excel("https://github.com/Sud-Austral/ACTION_LICITACION/raw/main/licitaciones_publicadas_2019.xlsx")
     
     now = datetime.datetime.now()
@@ -80,6 +80,7 @@ def proceso2():
         response = req.get(url)
         decoded_data=codecs.decode(response.content, 'utf-8-sig')
         d = json.loads(decoded_data)
+        print(d)
         try:            
             df = pd.DataFrame(d["Listado"])
             df["FechaPublicada"] = avance
