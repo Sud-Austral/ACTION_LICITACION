@@ -73,8 +73,7 @@ def proceso2():
     avance = start
     while avance < now:
         print(avance.strftime("%d%m%y"))
-        fecha = avance.strftime("%d%m") + "20" + avance.strftime("%y")
-        
+        fecha = avance.strftime("%d%m") + "20" + avance.strftime("%y")        
         url = f"http://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha={fecha}&estado=publicada&ticket=BC2B1276-7EF0-48FA-9EA8-888BFD8D11FE"
         #print(url)
         response = req.get(url)
@@ -93,7 +92,6 @@ def proceso2():
         time.sleep(2)
         avance += datetime.timedelta(days = 1)
     final = pd.concat(salida)
-
     final["Link"] = final["CodigoExterno"].apply(lambda x: f"http://www.mercadopublico.cl/fichaLicitacion.html?idLicitacion={x}")
 
     tabla_final = pd.concat([ref,final])
@@ -111,7 +109,6 @@ def proceso2():
     print("*****************************************")
     print("*****************************************")
     print("*****************************************")
-
     return
 
 if __name__ == '__main__':
