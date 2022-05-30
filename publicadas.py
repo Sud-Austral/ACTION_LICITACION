@@ -76,19 +76,22 @@ def proceso2():
         fecha = avance.strftime("%d%m") + "20" + avance.strftime("%y")        
         url = f"http://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha={fecha}&estado=publicada&ticket=BC2B1276-7EF0-48FA-9EA8-888BFD8D11FE"
         #print(url)
-        response = req.get(url)
-        decoded_data=codecs.decode(response.content, 'utf-8-sig')
-        d = json.loads(decoded_data)
-        print(d)
-        try:            
-            df = pd.DataFrame(d["Listado"])
-            df["FechaPublicada"] = avance
-            salida.append(df)
-            #print(f"Exito en {fecha}")
-        except:
-            print(f"error en {fecha}")
-            error = sys.exc_info()[1]
-            print(error)
+        flag = True
+        while flag:
+            response = req.get(url)
+            decoded_data=codecs.decode(response.content, 'utf-8-sig')
+            d = json.loads(decoded_data)
+            print(d)
+            try:            
+                df = pd.DataFrame(d["Listado"])
+                df["FechaPublicada"] = avance
+                salida.append(df)
+                flag = False
+                #print(f"Exito en {fecha}")
+            except:
+                print(f"error en {fecha}")
+                error = sys.exc_info()[1]
+                print(error)
         time.sleep(2)
         avance += datetime.timedelta(days = 1)
     final = pd.concat(salida)
