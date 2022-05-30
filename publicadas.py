@@ -96,7 +96,10 @@ def proceso2():
         avance += datetime.timedelta(days = 1)
     final = pd.concat(salida)
     final["Link"] = final["CodigoExterno"].apply(lambda x: f"http://www.mercadopublico.cl/fichaLicitacion.html?idLicitacion={x}")
-
+    print("Largo de los nuevos")
+    print(len(final))
+    print("Fecha maxima")
+    print(final["FechaPublicada"].max())
     tabla_final = pd.concat([ref,final])
     
     tabla_final = tabla_final.drop_duplicates()
@@ -107,6 +110,10 @@ def proceso2():
     tabla_final["FechaCierre"] = tabla_final["FechaCierre"].apply(GetFecha)
     tabla_final = tabla_final.drop_duplicates(subset=['CodigoExterno'])
     tabla_final.to_excel("licitaciones_publicadas_2019.xlsx", index=False)
+    print("Largo de los nuevos")
+    print(len(tabla_final))
+    print("Fecha maxima")
+    print(tabla_final["FechaPublicada"].max())
     print("*****************************************")
     print("*****************************************")
     print("*****************************************")
