@@ -4,6 +4,7 @@ import json
 import pandas as pd
 import datetime
 import time
+import sys
 
 def proceso():
     now = datetime.datetime.now()
@@ -79,14 +80,15 @@ def proceso2():
         response = req.get(url)
         decoded_data=codecs.decode(response.content, 'utf-8-sig')
         d = json.loads(decoded_data)
-        try:
-            
+        try:            
             df = pd.DataFrame(d["Listado"])
             df["FechaPublicada"] = avance
             salida.append(df)
             #print(f"Exito en {fecha}")
         except:
             print(f"error en {fecha}")
+            error = sys.exc_info()[1]
+            print(error)
         time.sleep(2)
         avance += datetime.timedelta(days = 1)
     final = pd.concat(salida)
