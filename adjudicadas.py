@@ -64,7 +64,7 @@ def proceso2():
         avance += datetime.timedelta(days = 1)
     final = pd.concat(salida)
 
-    final["Link"] = final["CodigoExterno"].apply(lambda x: f"http://www.mercadopublico.cl/fichaLicitacion.html?idLicitacion={x}")
+    final["Link"] = final["CodigoExterno"].apply(lambda x: f"www.mercadopublico.cl/fichaLicitacion.html?idLicitacion={x}")
     print("Largo de los nuevos")
     print(len(final))
     print("Fecha maxima")
