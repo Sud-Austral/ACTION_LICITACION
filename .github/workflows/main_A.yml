@@ -33,6 +33,7 @@ jobs:
         python desiertas.py
         python adjudicadas.py
         python suspendida.py
+        python revocadas.py
 
     - uses: stefanzweifel/git-auto-commit-action@v2
       with:
