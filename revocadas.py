@@ -30,8 +30,8 @@ def ChangeT(texto):
 
 
 def proceso2():
-    print("Comenzamos adjudicadas...")
-    ref = pd.read_excel("https://github.com/Sud-Austral/ACTION_LICITACION/raw/main/licitaciones_adjudicada_2019.xlsx")
+    print("Comenzamos revocadas...")
+    ref = pd.read_excel("https://github.com/Sud-Austral/ACTION_LICITACION/raw/main/licitaciones_revocada_2019.xlsx")
     
     now = datetime.datetime.now()
     #now
@@ -42,7 +42,7 @@ def proceso2():
         print(avance.strftime("%d%m%y"))
         fecha = avance.strftime("%d%m") + "20" + avance.strftime("%y")
         
-        url = f"http://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha={fecha}&estado=adjudicada&ticket=BC2B1276-7EF0-48FA-9EA8-888BFD8D11FE"
+        url = f"http://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha={fecha}&estado=revocada&ticket=BC2B1276-7EF0-48FA-9EA8-888BFD8D11FE"
         #print(url)
         flag = True
         while flag:
@@ -64,7 +64,7 @@ def proceso2():
         avance += datetime.timedelta(days = 1)
     final = pd.concat(salida)
 
-    final["Link"] = final["CodigoExterno"].apply(lambda x: f"www.mercadopublico.cl/fichaLicitacion.html?idLicitacion={x}")
+    final["Link"] = final["CodigoExterno"].apply(lambda x: f"http://www.mercadopublico.cl/fichaLicitacion.html?idLicitacion={x}")
     print("Largo de los nuevos")
     print(len(final))
     print("Fecha maxima")
@@ -79,8 +79,7 @@ def proceso2():
     tabla_final["FechaCierre"] = tabla_final["FechaCierre"].apply(GetFecha)
     tabla_final = tabla_final.drop_duplicates(subset=['CodigoExterno'])
 
-    tabla_final.to_excel("licitaciones_adjudicada_2019", index=False)
-    #tabla_final.to_csv("licitaciones_adjudicada_2019.csv", index=False)
+    tabla_final.to_excel("licitaciones_revocada_2019.xlsx", index=False)
 
     print("Largo de los nuevos")
     print(len(tabla_final))
@@ -96,5 +95,5 @@ def proceso2():
     return
 
 if __name__ == '__main__':
-    print("Adjudicadas...")
+    print("revocadas...")
     proceso2()
