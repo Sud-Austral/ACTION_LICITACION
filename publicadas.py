@@ -46,7 +46,15 @@ def proceso2():
         #print(url)
         flag = True
         while flag:
-            response = req.get(url)
+            flag2 = True
+            while flag2: 
+                try:
+                    response = req.get(url)
+                    flag2 = False
+                except:
+                    print("error",url)
+                
+            
             decoded_data=codecs.decode(response.content, 'utf-8-sig')
             d = json.loads(decoded_data)
             print(d)
