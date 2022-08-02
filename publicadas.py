@@ -35,7 +35,7 @@ def proceso2():
     ref = pd.read_excel("https://github.com/Sud-Austral/ACTION_LICITACION/raw/main/licitaciones_publicadas_2019.xlsx")
     
     now = datetime.datetime.now()
-    #now
+    #now now
     start = ref["FechaPublicada"].max()
     salida = []
     avance = start
