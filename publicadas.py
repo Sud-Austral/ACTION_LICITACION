@@ -42,7 +42,7 @@ def proceso2():
     while avance < now:
         print(avance.strftime("%d%m%y"))
         fecha = avance.strftime("%d%m") + "20" + avance.strftime("%y")        
-        url = f"http://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha={fecha}&estado=publicada&ticket=BC2B1276-7EF0-48FA-9EA8-888BFD8D11FE"
+        url = f"https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha={fecha}&estado=publicada&ticket=BC2B1276-7EF0-48FA-9EA8-888BFD8D11FE"
         #print(url)
         flag = True
         while flag:
